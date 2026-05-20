@@ -1,5 +1,6 @@
 package com.niarchos.portfolio_back_end.service;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -21,7 +22,8 @@ public class ExperienceService {
                         "Present",
                         "Providing technical support, troubleshooting user issues, handling tickets, and assisting with IT operations.",
                         "Jira, Windows, Linux, Networking",
-                        true
+                        true,
+                        1
                 ),
                 new ExperienceDto(
                         2L,
@@ -31,7 +33,8 @@ public class ExperienceService {
                         "Present",
                         "Learning security monitoring concepts, QRadar basics, events, flows, and infrastructure health monitoring.",
                         "QRadar, XClarity, Logs, Monitoring",
-                        true
+                        true,
+                        2
                 ),
                 new ExperienceDto(
                         3L,
@@ -41,7 +44,8 @@ public class ExperienceService {
                         "Present",
                         "Building a Spring Boot backend for serving portfolio data to an Angular frontend.",
                         "Java, Spring Boot, REST API",
-                        true
+                        true,
+                        3
                 ),
                 new ExperienceDto(
                         4L,
@@ -51,9 +55,13 @@ public class ExperienceService {
                         "Future",
                         "Placeholder for future work, learning, or project experience.",
                         "To be decided",
-                        false
+                        false,
+                        10
                 )
-        );
+        )
+                .stream()
+                .sorted(Comparator.comparingInt(ExperienceDto::getDisplayOrder))
+                .toList();
         // ================= END TEMP FAKE DATA =================
     }
 
@@ -61,6 +69,7 @@ public class ExperienceService {
         return getAllExperience()
                 .stream()
                 .filter(ExperienceDto::isTop)
+                .sorted(Comparator.comparingInt(ExperienceDto::getDisplayOrder))
                 .toList();
     }
 }

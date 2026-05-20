@@ -1,5 +1,6 @@
 package com.niarchos.portfolio_back_end.service;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -20,36 +21,43 @@ public class HomelabService {
                         "Linux, Docker, SSH",
                         "/assets/images/homelabs/home-server.webp",
                         "In Progress",
-                        true
+                        true,
+                        1
                 ),
                 new HomelabDto(
                         2L,
-                        "Network Segmentation Lab",
-                        "A practice lab for separating frontend, backend, and database services into different network zones.",
-                        "VLANs, Firewall, Nginx",
-                        "/assets/images/homelabs/network-lab.webp",
-                        "Planned",
-                        true
-                ),
-                new HomelabDto(
-                        3L,
                         "Docker Deployment Lab",
                         "A lab for deploying frontend and backend services with containers.",
                         "Docker, Docker Compose, Nginx",
                         "/assets/images/homelabs/docker-lab.webp",
                         "In Progress",
-                        true
+                        true,
+                        2
+                ),
+                new HomelabDto(
+                        3L,
+                        "Network Segmentation Lab",
+                        "Practice lab for separating frontend, backend, and database services into different network zones.",
+                        "VLANs, Firewall, Nginx",
+                        "/assets/images/homelabs/network-lab.webp",
+                        "Planned",
+                        true,
+                        3
                 ),
                 new HomelabDto(
                         4L,
-                        "Future Proxmox Lab",
-                        "Placeholder for a future virtualization lab.",
+                        "Proxmox Virtualization Lab",
+                        "Future lab for testing VMs, containers, and service isolation.",
                         "Proxmox, Linux, VMs",
-                        "/assets/images/homelabs/default.webp",
+                        "/assets/images/homelabs/proxmox.webp",
                         "Planned",
-                        false
+                        false,
+                        10
                 )
-        );
+        )
+                .stream()
+                .sorted(Comparator.comparingInt(HomelabDto::getDisplayOrder))
+                .toList();
         // ================= END TEMP FAKE DATA =================
     }
 
@@ -57,6 +65,7 @@ public class HomelabService {
         return getAllHomelabs()
                 .stream()
                 .filter(HomelabDto::isTop)
+                .sorted(Comparator.comparingInt(HomelabDto::getDisplayOrder))
                 .toList();
     }
 }

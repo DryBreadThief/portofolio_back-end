@@ -8,9 +8,10 @@ public class CertificateDto {
     private String imageUrl;
     private String credentialUrl;
     private boolean top;
+    private int displayOrder;
 
     public CertificateDto(Long id, String title, String issuer, String issueDate,
-                          String imageUrl, String credentialUrl, boolean top) {
+                          String imageUrl, String credentialUrl, boolean top, int displayOrder) {
         this.id = id;
         this.title = title;
         this.issuer = issuer;
@@ -18,6 +19,7 @@ public class CertificateDto {
         this.imageUrl = imageUrl;
         this.credentialUrl = credentialUrl;
         this.top = top;
+        this.displayOrder = displayOrder;
     }
 
     public Long getId() {
@@ -46,5 +48,9 @@ public class CertificateDto {
 
     public boolean isTop() {
         return top;
+    }
+
+    public int getDisplayOrder() {
+        return displayOrder;
     }
 }

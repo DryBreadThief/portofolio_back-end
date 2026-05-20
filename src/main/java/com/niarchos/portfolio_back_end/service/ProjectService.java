@@ -1,5 +1,6 @@
 package com.niarchos.portfolio_back_end.service;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -21,27 +22,30 @@ public class ProjectService {
                         "/assets/images/projects/portfolio.webp",
                         "https://github.com/YOUR_USERNAME/portfolio-site",
                         "",
-                        true
+                        true,
+                        1
                 ),
                 new ProjectDto(
                         2L,
-                        "Homelab Network",
-                        "Homelab setup for learning networking, servers, Docker, Nginx, and secure deployment.",
-                        "Linux, Docker, Nginx",
-                        "/assets/images/projects/homelab.webp",
-                        "",
-                        "",
-                        true
-                ),
-                new ProjectDto(
-                        3L,
                         "Backend API",
                         "Spring Boot REST API for serving portfolio data.",
                         "Java, Spring Boot",
                         "/assets/images/projects/backend.webp",
                         "https://github.com/YOUR_USERNAME/portfolio-backend",
                         "",
-                        true
+                        true,
+                        2
+                ),
+                new ProjectDto(
+                        3L,
+                        "Appointment Booking App",
+                        "Academic project for booking appointments with service providers.",
+                        "Angular, Spring Boot, PostgreSQL",
+                        "/assets/images/projects/appointment-app.webp",
+                        "",
+                        "",
+                        true,
+                        3
                 ),
                 new ProjectDto(
                         4L,
@@ -51,9 +55,13 @@ public class ProjectService {
                         "/assets/images/projects/default.webp",
                         "",
                         "",
-                        false
+                        false,
+                        10
                 )
-        );
+        )
+                .stream()
+                .sorted(Comparator.comparingInt(ProjectDto::getDisplayOrder))
+                .toList();
         // ================= END TEMP FAKE DATA =================
     }
 
@@ -61,6 +69,7 @@ public class ProjectService {
         return getAllProjects()
                 .stream()
                 .filter(ProjectDto::isTop)
+                .sorted(Comparator.comparingInt(ProjectDto::getDisplayOrder))
                 .toList();
     }
 }

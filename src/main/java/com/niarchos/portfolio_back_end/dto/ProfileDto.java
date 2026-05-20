@@ -1,6 +1,7 @@
 package com.niarchos.portfolio_back_end.dto;
 
 public class ProfileDto {
+    private Long id;
     private String fullName;
     private String title;
     private String summary;
@@ -9,8 +10,9 @@ public class ProfileDto {
     private String linkedinUrl;
     private String email;
 
-    public ProfileDto(String fullName, String title, String summary, String location,
-                      String githubUrl, String linkedinUrl, String email) {
+    public ProfileDto(Long id, String fullName, String title, String summary,
+                      String location, String githubUrl, String linkedinUrl, String email) {
+        this.id = id;
         this.fullName = fullName;
         this.title = title;
         this.summary = summary;
@@ -18,6 +20,10 @@ public class ProfileDto {
         this.githubUrl = githubUrl;
         this.linkedinUrl = linkedinUrl;
         this.email = email;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getFullName() {

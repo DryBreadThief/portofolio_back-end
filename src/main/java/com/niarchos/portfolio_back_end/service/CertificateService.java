@@ -1,5 +1,6 @@
 package com.niarchos.portfolio_back_end.service;
 
+import java.util.Comparator;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -20,7 +21,8 @@ public class CertificateService {
                         "In Progress",
                         "/assets/images/certificates/comptia-a-plus.webp",
                         "",
-                        true
+                        true,
+                        1
                 ),
                 new CertificateDto(
                         2L,
@@ -29,7 +31,8 @@ public class CertificateService {
                         "In Progress",
                         "/assets/images/certificates/networking.webp",
                         "",
-                        true
+                        true,
+                        2
                 ),
                 new CertificateDto(
                         3L,
@@ -38,7 +41,8 @@ public class CertificateService {
                         "In Progress",
                         "/assets/images/certificates/linux.webp",
                         "",
-                        true
+                        true,
+                        3
                 ),
                 new CertificateDto(
                         4L,
@@ -47,9 +51,13 @@ public class CertificateService {
                         "Planned",
                         "/assets/images/certificates/default.webp",
                         "",
-                        false
+                        false,
+                        10
                 )
-        );
+        )
+                .stream()
+                .sorted(Comparator.comparingInt(CertificateDto::getDisplayOrder))
+                .toList();
         // ================= END TEMP FAKE DATA =================
     }
 
@@ -57,6 +65,7 @@ public class CertificateService {
         return getAllCertificates()
                 .stream()
                 .filter(CertificateDto::isTop)
+                .sorted(Comparator.comparingInt(CertificateDto::getDisplayOrder))
                 .toList();
     }
 }

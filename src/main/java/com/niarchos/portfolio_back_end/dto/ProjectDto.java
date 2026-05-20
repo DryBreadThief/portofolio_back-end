@@ -9,9 +9,10 @@ public class ProjectDto {
     private String githubUrl;
     private String liveUrl;
     private boolean top;
+    private int displayOrder;
 
     public ProjectDto(Long id, String title, String description, String techStack,
-                      String imageUrl, String githubUrl, String liveUrl, boolean top) {
+                      String imageUrl, String githubUrl, String liveUrl, boolean top, int displayOrder) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -20,6 +21,7 @@ public class ProjectDto {
         this.githubUrl = githubUrl;
         this.liveUrl = liveUrl;
         this.top = top;
+        this.displayOrder = displayOrder;
     }
 
     public Long getId() {
@@ -52,5 +54,9 @@ public class ProjectDto {
 
     public boolean isTop() {
         return top;
+    }
+
+    public int getDisplayOrder() {
+        return displayOrder;
     }
 }

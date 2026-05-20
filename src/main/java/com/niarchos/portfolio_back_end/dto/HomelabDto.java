@@ -8,9 +8,10 @@ public class HomelabDto {
     private String imageUrl;
     private String status;
     private boolean top;
+    private int displayOrder;
 
     public HomelabDto(Long id, String title, String description, String techStack,
-                      String imageUrl, String status, boolean top) {
+                      String imageUrl, String status, boolean top, int displayOrder) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -18,6 +19,7 @@ public class HomelabDto {
         this.imageUrl = imageUrl;
         this.status = status;
         this.top = top;
+        this.displayOrder = displayOrder;
     }
 
     public Long getId() {
@@ -46,5 +48,9 @@ public class HomelabDto {
 
     public boolean isTop() {
         return top;
+    }
+
+    public int getDisplayOrder() {
+        return displayOrder;
     }
 }
